@@ -1,0 +1,18 @@
+---
+version: "2.1"
+services:
+  sonarr:
+    image: lscr.io/linuxserver/sonarr
+    container_name: sonarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Australia/Brisbane
+      - DOCKER_MODS=ghcr.io/gilbn/theme.park:sonarr
+    volumes:
+      - /dockerdata/sonarr/config:/config
+      - /mnt/nfs/data/tvshows:/tv #optional
+      - /mnt/nfs/data/downloads/:/downloads #optional
+    ports:
+      - 8089:8989
+    restart: unless-stopped
