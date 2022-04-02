@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  planka:
+    image: meltyshev/planka:latest
+    command: >
+      bash -c
+        "for i in `seq 1 30`; do
+          ./start.sh &&
+          s=$$? && break || s=$$?;
+          echo \"Tried $$i times. Waiting 5 seconds...\";
+          sleep 5;
+        done; (exit $$s)"
+    restart: unless-stopped
+    volumes:
+      - /mnt/nfs/docker/planka/user-avatars:/app/public/user-avatars
+      - /mnt/nfs/docker/planka/project-background-images:/app/public/project-background-images
+      - /mnt/nfs/docker/planka/attachments:/app/public/attachments
+    ports:
+      - 3000:1337
+    environment:
+      - BASE_URL=https://planka.comprofix.xyz
+      - DATABASE_URL=postgresql://postgres@postgres/planka
+      - SECRET_KEY=notsecretkey
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:13
+    restart: unless-stopped
+    volumes:
+      - /mnt/nfs/docker/planka/db-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=planka
+      - POSTGRES_HOST_AUTH_METHOD=trust
