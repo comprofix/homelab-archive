@@ -1,0 +1,9 @@
+---
+version: "2.1"
+services:
+  pykms:
+    image: pykmsorg/py-kms
+    container_name: pykms
+    restart: unless-stopped
+    ports:
+      - 1688:1688
