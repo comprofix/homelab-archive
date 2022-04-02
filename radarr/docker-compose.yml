@@ -1,0 +1,18 @@
+---
+version: "2.1"
+services:
+  radarr:
+    image: lscr.io/linuxserver/radarr
+    container_name: radarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Australia/Brisbane
+      - DOCKER_MODS=ghcr.io/gilbn/theme.park:radarr
+    volumes:
+      - /dockerdata/radarr/config:/config
+      - /mnt/nfs/data/movies:/movies #optional
+      - /mnt/nfs/data/downloads:/downloads #optional
+    ports:
+      - 7878:7878
+    restart: unless-stopped
