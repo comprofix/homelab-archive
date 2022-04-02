@@ -1,0 +1,17 @@
+---
+version: "2.1"
+services:
+  sabnzbd:
+    image: lscr.io/linuxserver/sabnzbd
+    container_name: sabnzbd
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Australia/Brisbane
+      - hostname=sabnzbd.comprofix.xyz
+    volumes:
+      - /mnt/nfs/docker/sabnzbd/config:/config
+      - /mnt/nfs/data/downloads:/downloads
+    ports:
+      - 8080:8080
+    restart: unless-stopped
