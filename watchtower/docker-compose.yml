@@ -9,7 +9,7 @@ services:
         - WATCHTOWER_SCHEDULE=0 0 4 * * *
         - WATCHTOWER_CLEANUP=true
         - WATCHTOWER_NOTIFICATIONS=slack
-        - WATCHTOWER_NOTIFICATION_SLACK_HOOK_URL=DISCORD_HOOK
+        - WATCHTOWER_NOTIFICATION_SLACK_HOOK_URL: DISCORD_HOOK
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     restart: unless-stopped
