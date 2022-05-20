@@ -2,7 +2,7 @@
 version: "2.1"
 services:
   sabnzbd:
-    image: linuxserver/sabnzbd:3.5.3-ls61
+    image: linuxserver/sabnzbd:latest
     container_name: sabnzbd
     environment:
       - PUID=1000
