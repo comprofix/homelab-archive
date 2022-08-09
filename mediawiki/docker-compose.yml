@@ -1,0 +1,15 @@
+# MediaWiki with MariaDB
+#
+# Access via "http://localhost:8080"
+#   (or "http://$(docker-machine ip):8080" if using docker-machine)
+version: '3'
+services:
+  mediawiki:
+    image: mediawiki
+    container_name: mediawiki
+    restart: always
+    ports:
+      - 8189:80
+    volumes:
+      - /mnt/nfs/docker/mediawiki/images:/var/www/html/images
+      - /mnt/nfs/docker/mediawiki/LocalSettings.php:/var/www/html/LocalSettings.php
