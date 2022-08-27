@@ -1,0 +1,17 @@
+---
+version: "2.1"
+services:
+  sonarr:
+    image: vaultwarden/server:latest
+    container_name: vaultwarden
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Australia/Brisbane
+      #- ADMIN_TOKEN=${ADMIN_TOKEN}
+    volumes:
+      - /mnt/nfs/docker/vaultwarden/data:/data
+
+    ports:
+      - 8589:80
+    restart: unless-stopped
