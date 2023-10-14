@@ -1,0 +1,13 @@
+version: '3'
+services:
+  osticket:
+    container_name: osticket
+    image: devinsolutions/osticket:latest
+    environment:
+      MYSQL_HOST: mysql.comprofix.xyz
+      MYSQL_DATABASE: comprofix_ost
+      MYSQL_USER: comprofix_ost
+      MYSQL_PASSWORD: kq@4Ti36
+    ports:
+      - 8383:80
+    restart: on-failure 

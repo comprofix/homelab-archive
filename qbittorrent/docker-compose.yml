@@ -13,7 +13,7 @@ services:
       - /mnt/nfs/docker/qbitorrent/config:/config
       - /mnt/nfs/data/downloads:/downloads
     ports:
-      - 6881:6881
-      - 6881:6881/udp
+      - 6881-6889:6881-6889
+      - 6881-6889:6881-6889/udp
       - 8989:8989
     restart: unless-stopped

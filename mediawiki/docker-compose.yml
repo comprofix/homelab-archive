@@ -13,3 +13,4 @@ services:
     volumes:
       - /mnt/nfs/docker/mediawiki/images:/var/www/html/images
       - /mnt/nfs/docker/mediawiki/LocalSettings.php:/var/www/html/LocalSettings.php
+    

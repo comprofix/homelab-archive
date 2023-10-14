@@ -11,6 +11,6 @@ services:
       - TZ=Australia/Brisbane
     volumes:
       - /mnt/nfs/docker/mariadb/config:/config
+    restart: unless-stopped
     ports:
       - 3306:3306
-    restart: unless-stopped

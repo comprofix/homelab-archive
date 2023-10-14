@@ -1,9 +1,18 @@
----
-version: "2.1"
+version: '3'
+
 services:
-  pykms:
-    image: pykmsorg/py-kms
+  kms:
     container_name: pykms
-    restart: unless-stopped
+    image: ghcr.io/py-kms-organization/py-kms:python3-next
     ports:
       - 1688:1688
+      - 8980:8080
+    environment:
+      - IP=0.0.0.0
+      - SQLITE=true
+      - HWID=RANDOM
+      - LOGLEVEL=INFO
+    restart: always
+    volumes:
+      - /mnt/nfs/docker/pykms/db:/home/py-kms/db
+      - /etc/localtime:/etc/localtime:ro

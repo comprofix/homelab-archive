@@ -1,0 +1,25 @@
+version: "3.1"
+services:
+  mealie:
+    container_name: mealie
+    image: hkotel/mealie:latest
+    restart: always
+    ports:
+      - 9925:80
+    environment:
+      PUID: 1000
+      PGID: 1000
+      TZ: Australia/Brisbane
+      # Default Recipe Settings
+      RECIPE_PUBLIC: 'false'
+      RECIPE_SHOW_NUTRITION: 'true'
+      RECIPE_SHOW_ASSETS: 'true'
+      RECIPE_LANDSCAPE_VIEW: 'true'
+      RECIPE_DISABLE_COMMENTS: 'true'
+      RECIPE_DISABLE_AMOUNT: 'true'
+      # Gunicorn
+      # WEB_CONCURRENCY: 2
+      # WORKERS_PER_CORE: 0.5
+      # MAX_WORKERS: 8
+    volumes:
+      - /mnt/nfs/docker/mealie/data/:/app/data

@@ -2,7 +2,7 @@
 version: "2"
 services:
   bookstack:
-    image: ghcr.io/linuxserver/bookstack:22.03.1
+    image: ghcr.io/linuxserver/bookstack:latest
     container_name: bookstack
     environment:
       - PUID=1000

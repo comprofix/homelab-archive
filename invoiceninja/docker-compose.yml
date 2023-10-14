@@ -1,0 +1,35 @@
+version: '3.7'
+
+services:
+  server:
+    container_name: invoiceninja-nginx
+    image: nginx
+    env_file: stack.env
+    restart: always
+    volumes:
+      # Vhost configuration
+      #- ./config/caddy/Caddyfile:/etc/caddy/Caddyfiledocker-com
+      - /mnt/nfs/docker/invoiceninja/config/nginx/in-vhost.conf:/etc/nginx/conf.d/in-vhost.conf
+      - /mnt/nfs/docker/invoiceninja/docker/app/public:/var/www/app/public
+      - /mnt/nfs/docker/invoiceninja/docker/app/storage:/var/www/app/storage
+    depends_on:
+      - app
+    # Run webserver nginx on port 80
+    # Feel free to modify depending what port is already occupied
+    ports:
+      - "8082:80"
+      #- "9443:443"
+    extra_hosts:
+      - "invoice.comprofix.com:10.10.10.5" #host and ip
+
+  app:
+    container_name: invoiceninja-app
+    image: invoiceninja/invoiceninja:5
+    env_file: stack.env
+    restart: always
+    volumes:
+      - /mnt/nfs/docker/invoiceninja/config/hosts:/etc/hosts
+      - /mnt/nfs/docker/invoiceninja/docker/app/public:/var/www/app/public
+      - /mnt/nfs/docker/invoiceninja/docker/pp/storage:/var/www/app/storage
+    extra_hosts:
+      - "invoice.comprofix.com:10.10.10.5" #host and ip
